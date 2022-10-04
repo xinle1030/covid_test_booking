@@ -1,0 +1,67 @@
+/*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>      
+             Feature Area-L-17
+          <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+
+.feature-area-l-17 .feature-area-l-17-items .single-features .circle-dot-1 i {
+  font-size: 10px;
+  color: #fc5c65;
+  height: 50px;
+  width: 50px;
+  line-height: 50px;
+  text-align: center;
+  border-radius: 50%;
+  background: rgba(252, 92, 101, 0.06);
+  margin-bottom: 35px;
+}
+
+.feature-area-l-17 .feature-area-l-17-items .single-features .circle-dot-2 i {
+  font-size: 10px;
+  color: #50e3c2;
+  height: 50px;
+  width: 50px;
+  line-height: 50px;
+  text-align: center;
+  border-radius: 50%;
+  background: rgba(80, 163, 227, 0.06);
+  margin-bottom: 35px;
+}
+
+.feature-area-l-17 .feature-area-l-17-items .single-features .circle-dot-3 i {
+  font-size: 10px;
+  color: #a665fb;
+  height: 50px;
+  width: 50px;
+  line-height: 50px;
+  text-align: center;
+  border-radius: 50%;
+  background: rgba(166, 101, 251, 0.06);
+  margin-bottom: 35px;
+}
+
+.feature-area-l-17 .feature-area-l-17-items .single-features h4 {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 34px;
+  color: #000000;
+  margin-bottom: 25px;
+}
+
+.feature-area-l-17 .feature-area-l-17-items .single-features p {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 34px;
+  color: #323232;
+  margin-bottom: 0;
+}
+
+#display-image{
+  width: 250x;
+  height: 250px;
+  border: 1px solid black;
+  background-position: center;
+  background-size: cover;
+}

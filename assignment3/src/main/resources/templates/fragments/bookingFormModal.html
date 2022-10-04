@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<!-- Booking Form Modal -->
+<div th:fragment="bookingFormModal" class="modal fade" id="bookingFormModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Booking Form</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="#" th:action="@{'/testingSites/' + ${targetTestingSite.getId()} + '/book'}" method="post">
+
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" class="form-control" id="username" placeholder="Username" th:value="${bookingInfo.getUsername()}" name="username" required>
+                    </div>
+
+                    <br>
+
+
+                    <label for="firstName">Name</label>
+                    <div class="form-row input-group">
+                        <div class="form-group col-md-6">
+                            <input type="text" class="form-control" id="firstName" placeholder="First Name" th:value="${bookingInfo.getGivenName()}" name="givenName" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <input type="text" class="form-control" id="lastName" placeholder="Last Name" th:value="${bookingInfo.getFamilyName()}" name="familyName" required>
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <div class="form-group">
+                        <label for="phoneNum">Phone Number</label>
+                        <input type="tel" class="form-control" id="phoneNum" placeholder="Phone Number" th:value="${bookingInfo.getPhoneNumber()}" name="phoneNumber" required>
+                    </div>
+
+                    <br>
+
+                    <div class="form-row input-group">
+                        <div class="form-group col-md-6">
+                            <label>Covid Test Type</label>
+                            <select class="form-select" id="covidTestType" th:value="${covidTestInfo.getType()}" name="type" required>
+                                <option value="" disabled selected>Select Covid Test Type</option>
+                                <option value="PCR">PCR</option>
+                                <option value="RAT">RAT</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Covid Test Mode</label>
+                            <select class="form-select" id="covidTestMode" th:value="${covidTestAdditionalInfo.getTestMode()}" name="testMode" required>
+                                <option value="" disabled selected>Select Covid Test Mode</option>
+                                <option value="home">Home Testing</option>
+                                <option value="onsite">On-Site Testing</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <div class="form-group">
+                        <label>If you select RAT home supervised testing, would you pick up your RAT test kit at the testing site?</label>
+                        <select class="form-select" id="isTestKitPickedUp" th:value="${covidTestAdditionalInfo.getIsTestKitPickedUp()}" name="isTestKitPickedUp" required>
+                            <option value="-1" disabled selected>-</option>
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
+                    </div>
+
+                    <br>
+
+                    <div class="form-group">
+                        <label for="date-picker">Booking Date and Time</label>
+                        <div id="date-picker" class="md-form md-outline input-with-post-icon datepicker" inline="true">
+                            <input placeholder="Select date" type="datetime-local" id="date-picker-input" class="form-control" th:value="${bookingInfo.getStartTime()}" name="startTime" required>
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <div class="form-group">
+                        <label for="remarks">Remarks (if any)</label>
+                        <input type="text" class="form-control" id="remarks" placeholder="Put down any remarks if any" th:value="${bookingInfo.getNotes()}" name="notes">
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

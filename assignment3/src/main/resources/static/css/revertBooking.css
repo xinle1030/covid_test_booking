@@ -1,0 +1,44 @@
+.tablink {
+  background-color: DodgerBlue;
+  opacity: 1;
+  color: white;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  font-size: 17px;
+  width: 25%;
+}
+.tablink1 {
+  background-color: DodgerBlue;
+  opacity: 0.7;
+  color: white;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  font-size: 17px;
+  width: 25%;
+}
+
+.tablink2 {
+  background-color: DodgerBlue;
+  opacity: 0.5;
+  color: white;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  font-size: 17px;
+  width: 25%;
+}
+
+
+
+
+.tablink:hover {
+  background-color: #777;
+}

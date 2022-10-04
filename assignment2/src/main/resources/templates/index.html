@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>TestVidy</title>
+  <base href="/">
+  <link rel="shortcut icon" href="image/favicon.png" type="image/x-icon">
+  <!-- Bootstrap , fonts & icons  -->
+  <link rel="stylesheet" href="./css/bootstrap.css">
+  <link rel="stylesheet" href="./fonts/icon-font/css/style.css">
+  <link rel="stylesheet" href="./fonts/typography-font/typo.css">
+  <link rel="stylesheet" href="./fonts/fontawesome-5/css/all.css">
+  <link href="https://fonts.googleapis.com/css2?family=Karla:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- Plugin'stylesheets  -->
+  <link rel="stylesheet" href="./plugins/aos/aos.min.css">
+  <link rel="stylesheet" href="./plugins/slick/slick.min.css">
+  <!-- Vendor stylesheets  -->
+  <link rel="stylesheet" href="./css/main.css">
+  <!-- Custom stylesheet -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <base href="/">
+</head>
+
+<body onload="scrollToSearchResult()" data-theme-mode-panel-active data-theme="light" style="font-family: 'Mazzard H';">
+  <div class="site-wrapper overflow-hidden position-relative">
+    <!-- Site Header -->
+    <!-- Preloader -->
+    <!-- <div id="loading">
+  <div class="preloader">
+   <img src="./image/preloader.gif" alt="preloader">
+ </div>
+ </div>    -->
+    <!--        NavBar-->
+    <div th:insert="fragments/nav_bar :: nav_bar"></div>
+    <!-- Hero Area -->
+
+    <div class="hero-area-l11 position-relative z-index-1 overflow-hidden">
+      <div class="container position-relative">
+
+        <div class="row position-relative justify-content-center">
+          <div class="col-xl-8 col-lg-9 col-md-12 order-lg-1 order-1" data-aos="fade-up" data-aos-duration="500"
+            data-aos-once="true">
+
+
+            <div class="alert alert-success" role="alert" th:if="${success}" th:text="${success}"></div>
+
+            <div class="content">
+
+              <h1>Online Covid Testing<br class="d-none d-md-block"> Registration System</h1>
+              <div class="row banner-l-11-bottom-content">
+                <div class="col-lg-8 col-md-8 col-sm-10">
+                  <p class="position-relative banner-main-content-l-11">We have a simple message for all countries:
+                    <br class="d-none d-md-block"> test, test, test.
+                    <span class="line-left-content"></span>
+                  </p>
+                </div>
+                <br>
+                <br>
+                <br>
+                <br>
+
+                <form th:action="@{/testingSites}" method="get">
+                  <div class="col-lg-8 col-md-8 col-sm-10 compitable-text d-inline-block">
+                    <div class="input-group mb-3">
+                      <input type="text" class="form-control" placeholder="Suburb [Optional]" th:name="suburb"
+                        aria-label="Text input with dropdown button">
+                      <input type="text" class="form-control" placeholder="Postcode [optional]" th:name="postcode"
+                        aria-label="Text input with dropdown button">
+                      <select class="btn btn-outline-secondary dropdown-toggle" th:name="facilityType"
+                        style="padding: 0 2%;">
+                        <option value="noPreference">No Preference</option>
+                        <option value="driveThrough">Drive Through</option>
+                        <option value="walkIn">Walk-in</option>
+                        <option value="clinic">Clinic</option>
+                        <option value="gp">GP</option>
+                        <option value="hospital">Hospital</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-md-4 col-sm-6">
+                    <button class="btn l-11-hero-btn" href="#searchContent" type="submit">Search</button>
+                  </div>
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-shape-l11-1 d-none d-md-block">
+        <img src="./image/l2/hero-shape-1.svg" alt="">
+      </div>
+      <div class="hero-shape-l11-2 d-none d-md-block">
+        <img src="./image/l2/hero-shape-2.png" alt="">
+      </div>
+    </div>
+
+    <section id="searchContent">
+      <!-- Feature Area -->
+      <div class="feature-l-11">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-xl-9 px-lg-12 col-md-12">
+              <div class="row justify-content-center">
+                <div class="col-lg-10 text-center">
+                  <div class="section-heading-5">
+                    <h2>
+                      Search Results
+                    </h2>
+                    <p
+                      th:text="*{allTestingSites.length == 0}? 'No matching results' : 'Your search results are as follows:'">
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <!-- pricing table -->
+              <div class="pricing-area-l-17 position-relative overflow-hidden">
+                <div class="container">
+                  <div class="row justify-content-center">
+                    <th:block th:each="allTestingSites: ${allTestingSites}">
+                      <!-- first card -->
+                      <div class="col-xl-6 col-lg-5 col-md-6 col-sm-8" th:classappend="${allTestingSites.getAdditionalInfo().getTestingSiteStatus().getValue().equals('closed')} ? 'grey-box'">
+                        <div class="single-price" data-aos="fade-right" data-aos-duration="800" data-aos-once="true">
+                          <div class="price-top justify-content-between">
+                            <!-- <span>Type of Faci</span> -->
+                            <span th:text="${allTestingSites.getAdditionalInfo().getFacilityType()}"></span>
+                            <h4 style="color: #FF7139;" th:text="${allTestingSites.getAdditionalInfo().getTestingSiteStatus()}"></h4>
+                          </div>
+                          <br>
+                          <div class="main-price">
+                            <div class="price d-flex position-relative ">
+                              <h2 th:text="${allTestingSites.getName()}"></h2>
+                            </div>
+                          </div>
+                          <p
+                            th:text="*{allTestingSites.getDescription()!= null}? *{allTestingSites.getDescription()} : '-'">
+                          </p>
+                          <div class="price-body pt-8">
+                            <ul class="pricing-list list-unstyled">
+                              <li> <i class="fa fa-clock"></i>Open at:
+                                <span th:text="${allTestingSites.getAdditionalInfo().getOpenAtTime()}"></span>
+                              </li>
+                              <li> <i class="fa fa-lock"></i>Closed at:
+                                <span th:text="${allTestingSites.getAdditionalInfo().getClosedAtTime()}"></span>
+                              </li>
+                              <li> <i class="fa fa-home"></i>Address: <span
+                                  th:text="${allTestingSites.getAddress().toString()}"></span></li>
+                              <li> <i class="fa fa-send"></i>Postcode:
+                                <span th:text="${allTestingSites.getAddress().getPostcode()}"></span>
+                              </li>
+                              <li> <i class="fa fa-location-arrow"></i>State:
+                                <span th:text="${allTestingSites.getAddress().getState()}"></span>
+                              </li>
+                              <li> <i class="fa fa-external-link-square"></i>Website Url:
+                                <span
+                                  th:text="*{allTestingSites.getWebsiteUrl()!= null}? *{allTestingSites.getWebsiteUrl()} : '-'"></span>
+                              </li>
+                            </ul>
+                          </div>
+                          <div class="price-btn">
+
+                            <a th:if="${allTestingSites.getAdditionalInfo().getTestingSiteStatus().getValue().equals('open')}" class="btn" th:href="@{'/testingSites/' + ${allTestingSites.getId()}}">Learn More</a>
+                            <a th:if="${allTestingSites.getAdditionalInfo().getTestingSiteStatus().getValue().equals('closed')}" class="btn" >Learn More</a>
+                            <p>Phone Number: <span th:text="${allTestingSites.getPhoneNumber()}"></span></p>
+                          </div>
+                        </div>
+                      </div>
+                    </th:block>
+                  </div>
+                </div>
+                <br>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  </div>
+  </section>
+
+  <!--footer-->
+  <div th:insert="fragments/footer :: footer"></div>
+  </div>
+
+  <!--Modal-->
+  <div th:insert="fragments/loginModal :: loginModal"></div>
+  <div th:insert="fragments/logoutModal :: logoutModal"></div>
+
+  <!-- Vendor Scripts -->
+  <script src="js/vendor.min.js"></script>
+  <!-- Plugin's Scripts -->
+  <script src="./plugins/aos/aos.min.js"></script>
+  <script src="./plugins/slick/slick.min.js"></script>
+  <script src="./plugins/menu/menu.js"></script>
+  <!-- Activation Script -->
+  <script src="js/custom.js"></script>
+  <script src="js/index.js"></script>
+  <script th:inline="javascript">
+    /*<![CDATA[*/
+    let isAuth = /*[[${session.isAuth}]]*/ 'default';
+    let isSearch = /*[[${session.isSearch}]]*/ 'default';
+    console.log(isSearch);
+    if ((isAuth == null || isAuth == false) && (!isSearch)) {
+      document.getElementById("loginBtn").click();
+    }
+    /*]]>*/
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+  <!-- Footer Area -->
+  <div th:fragment="profile">
+
+    <div th:if="${session.logInUser != null}">
+
+      <div class="row align-items-center justify-content-lg-between justify-content-center">
+        <div class="col-xxl-10 col-xl-11 col-lg-11 col-md-9 order-lg-1 order-1" data-aos="fade-right"
+          data-aos-duration="800" data-aos-once="true">
+
+          <div class="content section-heading-5">
+
+
+                <div class="card-body">
+                  <ul class="pricing-list list-unstyled">
+                    <li>
+                      <h6>Name:
+                        <span
+                          th:text="${session.logInUser.getGivenName() + ' ' + session.logInUser.getFamilyName()}"></span>
+                      </h6>
+                    </li>
+                    <li>
+                      <h6>Username:
+                        <span th:text="${session.logInUser.getUserName()}"></span>
+                      </h6>
+                    </li>
+                    <li>
+                      <h6>Phone Number:
+                        <span th:text="${session.logInUser.getPhoneNumber()}"></span>
+                      </h6>
+                    </li>
+                    <li>
+                      <h6>User Role:
+                        <span th:text="${session.logInUser.getAdditionalInfo().getFUserRole()}"></span>
+                      </h6>
+                    </li>
+                  </ul>
+                </div>
+
+    
+
+
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</body>
+
+</html>

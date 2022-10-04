@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TestVidy</title>
+    <base href="/">
+    <link rel="shortcut icon" href="image/favicon.png" type="image/x-icon">
+    <!-- Bootstrap , fonts & icons  -->
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="./fonts/icon-font/css/style.css">
+    <link rel="stylesheet" href="./fonts/typography-font/typo.css">
+    <link rel="stylesheet" href="./fonts/fontawesome-5/css/all.css">
+    <link href="https://fonts.googleapis.com/css2?family=Karla:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Plugin'stylesheets  -->
+    <link rel="stylesheet" href="./plugins/aos/aos.min.css">
+    <link rel="stylesheet" href="./plugins/slick/slick.min.css">
+    <!-- Vendor stylesheets  -->
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/testingSite.css">
+    <link rel="stylesheet" href="./css/searchBar.css">
+    <link rel="stylesheet" href="./css/homeTesting.css">
+    <!-- Custom stylesheet -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body data-theme-mode-panel-active data-theme="light" style="font-family: 'Mazzard H';">
+    <div class="site-wrapper overflow-hidden position-relative">
+        <!-- Site Header -->
+        <!-- Preloader -->
+        <!-- <div id="loading">
+    <div class="preloader">
+     <img src="./image/preloader.gif" alt="preloader">
+   </div>
+   </div>    -->
+
+        <!--        NavBar-->
+        <div th:insert="fragments/nav_bar :: nav_bar"></div>
+        <!-- Hero Area -->
+        <div class="hero-area-l11 position-relative z-index-1 overflow-hidden">
+            <div class="container position-relative">
+                <div class="row position-relative justify-content-center">
+                    <div class="col-xl-8 col-lg-9 col-md-12 order-lg-1 order-1" data-aos="fade-up"
+                        data-aos-duration="500" data-aos-once="true">
+                        <div class="content">
+                            <!-- Content Area-2  -->
+                            <div class="content-area-l-11-2">
+                                <div class="container">
+                                    <div
+                                        class="row align-items-center justify-content-lg-between justify-content-center">
+                                        <div class="col-xxl-10 col-xl-11 col-lg-11 col-md-9 order-lg-1 order-1"
+                                            data-aos="fade-right" data-aos-duration="800" data-aos-once="true">
+                                            <div class="content section-heading-5">
+                                                <h2>
+                                                    My Profile
+                                                </h2>
+
+                                                
+
+                                                <!--My Profile-->
+                                                <div th:insert="fragments/profile :: profile"></div>
+
+                                                <div class="alert alert-success" role="alert" th:if="${success}" th:text="${success}"></div>
+                                                <div class="alert alert-success" role="alert" th:if="${error}" th:text="${error}"></div>
+
+                                                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                                    
+                                                    <li class="nav-item" role="presentation">
+                                                      <button class="nav-link active" id="active-on-site-tab" data-bs-toggle="tab" data-bs-target="#active-on-site" type="button" role="tab" aria-controls="active-on-site" aria-selected="true">Active On-site Booking(s)</button>
+                                                    </li>
+                                                    <li class="nav-item" role="presentation">
+                                                        <button class="nav-link" id="inactive-on-site-tab" data-bs-toggle="tab" data-bs-target="#inactive-on-site" type="button" role="tab" aria-controls="inactive-on-site" aria-selected="false">Inactive On-site Booking(s)</button>
+                                                      </li>
+                                                    <li class="nav-item" role="presentation">
+                                                      <button class="nav-link" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="false">Home Booking(s)</button>
+                                                    </li>
+                                                  </ul>
+                                                  <div class="tab-content" id="myTabContent">
+                                                   
+                                                    <div class="tab-pane fade show active" id="active-on-site" role="tabpanel" aria-labelledby="active-on-site-tab">
+                                                        <div>
+                                                            <div th:insert="fragments/onSiteTesting :: onSiteTesting" th:with="bookings=${activeOnSiteBookings}"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane fade" id="inactive-on-site" role="tabpanel" aria-labelledby="inactive-on-site-tab">
+                                                        <div>
+                                                            <div th:insert="fragments/onSiteTesting :: onSiteTesting" th:with="bookings=${inactiveOnSiteBookings}"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                                        <div>
+                                                            <div th:insert="fragments/homeTesting :: homeTesting" th:with="bookings=${homeBookings}"></div>
+                                                        </div>
+                                                    </div>
+                                                  </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-shape-l11-1 d-none d-md-block">
+                <img src="./image/l2/hero-shape-1.svg" alt="">
+            </div>
+            <div class="hero-shape-l11-2 d-none d-md-block">
+                <img src="./image/l2/hero-shape-2.png" alt="">
+            </div>
+        </div>
+
+        <!--footer-->
+        <div th:insert="fragments/footer :: footer"></div>
+    </div>
+    </section>
+    </div>
+
+    <!--Modal-->
+    <div th:insert="fragments/loginModal :: loginModal"></div>
+    <div th:insert="fragments/logoutModal :: logoutModal"></div>
+    <div th:insert="fragments/interviewModal :: interviewModal"></div>
+    <th:block th:each="bookings, status: ${activeOnSiteBookings}">
+        <div th:insert="fragments/cancelBookingModal :: cancelBookingModal" th:with="bookingId=${bookings.getId()}">
+        </div>
+    </th:block>
+
+    <!-- Vendor Scripts -->
+    <script src="js/vendor.min.js"></script>
+    <!-- Plugin's Scripts -->
+    <script src="./plugins/aos/aos.min.js"></script>
+    <script src="./plugins/slick/slick.min.js"></script>
+    <script src="./plugins/menu/menu.js"></script>
+    <!-- Activation Script -->
+    <script src="js/custom.js"></script>
+    <script src="js/constants.js"></script>
+    <script src="js/bookings.js"></script>
+    <script src="js/homeTesting.js"></script>
+</body>
+
+</html>

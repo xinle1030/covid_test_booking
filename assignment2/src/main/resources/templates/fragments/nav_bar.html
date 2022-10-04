@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+    <!--Site Header Area -->
+    <header th:fragment="nav_bar"
+        class="site-header site-header--menu-left landing-11-menu site-header--absolute site-header--sticky">
+        <div class="container">
+            <nav class="navbar site-navbar">
+                <!-- Brand Logo-->
+                <div class="brand-logo">
+                    <a href="/">
+                        <!-- light version logo (logo must be black)-->
+                        <img src="image/logo/logo-black.png" alt="" class="light-version-logo">
+                        <!-- Dark version logo (logo must be White)-->
+                        <img src="image/logo/logo-white.png" alt="" class="dark-version-logo">
+                    </a>
+                </div>
+                <div class="menu-block-wrapper">
+                    <div class="menu-overlay"></div>
+                    <nav class="menu-block" id="append-menu-header">
+                        <div class="mobile-menu-head">
+                            <div class="go-back">
+                                <i class="fa fa-angle-left"></i>
+                            </div>
+                            <div class="current-menu-title"></div>
+                            <div class="mobile-menu-close">&times;</div>
+                        </div>
+                        <ul class="site-menu-main">
+                            <div th:if="${session.isAuth}">
+                                <li class="nav-item nav-item-has-children">
+                                    <a href="#" class="nav-link-item drop-trigger">My Bookings<i
+                                            class="fas fa-angle-down"></i>
+                                    </a>
+                                    <ul class="sub-menu" id="submenu-9">
+                                        <li class="sub-menu--item">
+                                            <a href="/onSiteTesting">On-site Testing</a>
+                                        </li>
+                                        <li class="sub-menu--item">
+                                            <a href="/homeTesting">Home Testing</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </div>
+                            <div th:if="${session.isAuth}">
+                                <div th:if="${session.logInUser} != null and ${session.logInUser.isAdmin()}">
+                                    <li class="nav-item nav-item-has-children">
+                                        <a href="#" class="nav-link-item drop-trigger">Search Bookings<i
+                                                class="fas fa-angle-down"></i>
+                                        </a>
+                                        <ul class="sub-menu" id="submenu-9">
+                                            <li class="sub-menu--item">
+                                                <a href="/searchOnSiteTesting">On-site Testing</a>
+                                            </li>
+                                            <li class="sub-menu--item">
+                                                <a href="/searchHomeTesting">Home Testing</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </div>
+                            </div>
+                            <li class="nav-item">
+                                <a class="nav-link-item"></a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="header-btns  header-btn-l11 ms-auto d-none d-xs-inline-flex align-items-center">
+                    <!--                <div th:switch="${session.isAuth}">-->
+                    <!--                    <a th:case ="*" class="btn btn-outline-primary log-in-btn focus-reset" href="#"  data-bs-toggle="modal"-->
+                    <!--                               data-bs-target="#loginModal">-->
+                    <!--                                Log In-->
+                    <!--                    </a>-->
+                    <!--                    <a th:case =true class="btn btn-outline-primary log-in-btn focus-reset" href="#"  data-bs-toggle="modal"-->
+                    <!--                               data-bs-target="#logoutModal">-->
+                    <!--                                Log Out-->
+                    <!--                    </a>-->
+                    <!--                </div>-->
+
+                    <div th:if="${session.isAuth}">
+                        <a class="btn btn-outline-primary log-in-btn focus-reset" href="#" data-bs-toggle="modal"
+                            data-bs-target="#logoutModal">
+                            Log Out
+                        </a>
+                    </div>
+                    <div th:unless="${session.isAuth}">
+                        <a class="btn btn-outline-primary log-in-btn focus-reset" href="#"  data-bs-toggle="modal" id="loginBtn"
+                           data-bs-target="#loginModal">
+                            Log In
+                        </a>
+                    </div>
+                </div>
+                <!-- mobile menu trigger -->
+                <div class="mobile-menu-trigger">
+                    <span></span>
+                </div>
+                <!--/.Mobile Menu Hamburger Ends-->
+            </nav>
+
+        </div>
+    </header>
+    <!-- navbar- -->
+
+
+</body>
+
+</html>

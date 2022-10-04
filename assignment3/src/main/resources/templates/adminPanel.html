@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TestVidy</title>
+    <base href="/">
+    <link rel="shortcut icon" href="image/favicon.png" type="image/x-icon">
+    <!-- Bootstrap , fonts & icons  -->
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="./fonts/icon-font/css/style.css">
+    <link rel="stylesheet" href="./fonts/typography-font/typo.css">
+    <link rel="stylesheet" href="./fonts/fontawesome-5/css/all.css">
+    <link href="https://fonts.googleapis.com/css2?family=Karla:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Plugin'stylesheets  -->
+    <link rel="stylesheet" href="./plugins/aos/aos.min.css">
+    <link rel="stylesheet" href="./plugins/slick/slick.min.css">
+    <!-- Vendor stylesheets  -->
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/testingSite.css">
+    <link rel="stylesheet" href="./css/searchBar.css">
+    <!-- Custom stylesheet -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body data-theme-mode-panel-active data-theme="light" style="font-family: 'Mazzard H';">
+    <div class="site-wrapper overflow-hidden position-relative">
+        <!-- Site Header -->
+        <!-- Preloader -->
+        <!-- <div id="loading">
+    <div class="preloader">
+     <img src="./image/preloader.gif" alt="preloader">
+   </div>
+   </div>    -->
+
+        <!--        NavBar-->
+        <div th:insert="fragments/nav_bar :: nav_bar"></div>
+        <!-- Hero Area -->
+        <div class="hero-area-l11 position-relative z-index-1 overflow-hidden">
+            <div class="container position-relative">
+                <div class="row position-relative justify-content-center">
+                    <div class="col-xl-8 col-lg-9 col-md-12 order-lg-1 order-1" data-aos="fade-up"
+                        data-aos-duration="500" data-aos-once="true">
+                        <div class="content">
+                            <!-- Content Area-2  -->
+                            <div class="content-area-l-11-2">
+                          
+                                    <div
+                                        class="row align-items-center justify-content-lg-between justify-content-center">
+                                        <div class="col-xxl-10 col-xl-11 col-lg-11 col-md-9 order-lg-1 order-1"
+                                            data-aos="fade-right" data-aos-duration="800" data-aos-once="true">
+                                            <div class="content section-heading-5">
+                                                <h2>
+                                                    Admin Panel
+                                                </h2>
+                                                <em><h4 style="color: #808080;   text-decoration: underline;
+                                                    text-decoration-color: #808080;" th:text="${session.logInUser.getAdditionalInfo().getTestingSite().getName()}">
+                                                </h4></em>
+
+                                                <br>
+                                                <div class="alert alert-success" role="alert" th:if="${success}" th:text="${success}"></div>
+                                                <div class="alert alert-danger" role="alert" th:if="${error}" th:text="${error}"></div>
+                                                <br>
+
+                                                <!--Admin Panel starts here-->
+                                                <table class="table table-hover">
+                                                    <thead class="thead-dark">
+                                                        <tr>
+                                                            <th scope="col">#</th>
+                                                            <th scope="col">Patient Name</th>
+                                                            <th scope="col">Customer Name</th>
+                                                            <th scope="col">Administerer Name</th>
+                                                            <th scope="col">Start Datetime</th>
+                                                            <th scope="col">Test Type & Mode</th>
+                                                            <th scope="col">Last Updated</th>
+                                                            <th scope="col">Booking Status</th>
+                                                            <th scope="col">Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <th:block th:each="bookings, status: ${bookings}">
+                                                        <tbody>
+                                                            <tr>
+                                                                <th scope="row" th:text="${status.index + 1}"></th>
+                                                                <td th:text="${bookings.getCovidTests()[0].getPatient().getGivenName() + ' ' + bookings.getCovidTests()[0].getPatient().getFamilyName()}"></td>
+                                                                <td th:text="${bookings.getCustomer().getGivenName() + ' ' + bookings.getCustomer().getFamilyName()}"></td>
+                                                                <td th:text="${bookings.getCovidTests()[0].getAdministerer() != null} ? (${bookings.getCovidTests()[0].getAdministerer().getGivenName() + ' ' + bookings.getCovidTests()[0].getAdministerer().getFamilyName()}) : '-'"></td>
+                                                                <td th:text="${bookings.getStartTime()}"></td>
+                                                                <td th:text="${bookings.getCovidTests()[0].getType() + ', ' +  bookings.getCovidTests()[0].getAdditionalInfo().getTestMode()}"></td>
+                                                                <td th:text="${bookings.getUpdatedAt()}"></td>
+                                                                <td th:text="${bookings.getStatus()}"></td>
+                                                                <td><a th:href="@{'/booking/' + ${bookings.getId()}}">View More</a></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </th:block>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                         
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-shape-l11-1 d-none d-md-block">
+                <img src="./image/l2/hero-shape-1.svg" alt="">
+            </div>
+            <div class="hero-shape-l11-2 d-none d-md-block">
+                <img src="./image/l2/hero-shape-2.png" alt="">
+            </div>
+        </div>
+
+        <!--footer-->
+        <div th:insert="fragments/footer :: footer"></div>
+    </div>
+    </section>
+    </div>
+
+    <!--Modal-->
+    <div th:insert="fragments/loginModal :: loginModal"></div>
+    <div th:insert="fragments/logoutModal :: logoutModal"></div>
+    <div th:insert="fragments/interviewModal :: interviewModal"></div>
+
+    <!-- Vendor Scripts -->
+    <script src="js/vendor.min.js"></script>
+    <!-- Plugin's Scripts -->
+    <script src="./plugins/aos/aos.min.js"></script>
+    <script src="./plugins/slick/slick.min.js"></script>
+    <script src="./plugins/menu/menu.js"></script>
+    <!-- Activation Script -->
+    <script src="js/custom.js"></script>
+    <script src="js/constants.js"></script>
+</body>
+
+</html>

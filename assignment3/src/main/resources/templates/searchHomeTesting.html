@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TestVidy</title>
+    <base href="/">
+    <link rel="shortcut icon" href="image/favicon.png" type="image/x-icon">
+    <!-- Bootstrap , fonts & icons  -->
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="./fonts/icon-font/css/style.css">
+    <link rel="stylesheet" href="./fonts/typography-font/typo.css">
+    <link rel="stylesheet" href="./fonts/fontawesome-5/css/all.css">
+    <link href="https://fonts.googleapis.com/css2?family=Karla:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Plugin'stylesheets  -->
+    <link rel="stylesheet" href="./plugins/aos/aos.min.css">
+    <link rel="stylesheet" href="./plugins/slick/slick.min.css">
+    <!-- Vendor stylesheets  -->
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/testingSite.css">
+    <link rel="stylesheet" href="./css/homeTesting.css">
+    <link rel="stylesheet" href="./css/searchHomeTesting.css">
+    <!-- Custom stylesheet -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body data-theme-mode-panel-active data-theme="light" style="font-family: 'Mazzard H';">
+    <div class="site-wrapper overflow-hidden position-relative">
+        <!-- Site Header -->
+        <!-- Preloader -->
+        <!-- <div id="loading">
+    <div class="preloader">
+     <img src="./image/preloader.gif" alt="preloader">
+   </div>
+   </div>    -->
+
+        <!--        NavBar-->
+        <div th:insert="fragments/nav_bar :: nav_bar"></div>
+
+        <!-- Hero Area -->
+        <div class="hero-area-l11 position-relative z-index-1 overflow-hidden">
+            <div class="container position-relative">
+                <div class="row position-relative justify-content-center">
+                    <div class="col-xl-8 col-lg-9 col-md-12 order-lg-1 order-1" data-aos="fade-up"
+                        data-aos-duration="500" data-aos-once="true">
+                        <div class="content">
+                            <!-- Content Area-2  -->
+                            <div class="content-area-l-11-2">
+                                <div class="container">
+                                    <div
+                                        class="row align-items-center justify-content-lg-between justify-content-center">
+                                        <div class="col-xxl-10 col-xl-11 col-lg-11 col-md-9 order-lg-1 order-1"
+                                            data-aos="fade-right" data-aos-duration="800" data-aos-once="true">
+                                            <div class="content section-heading-5">
+                                                <div th:if="${isSearch != false}">
+                                                    <h2>
+                                                        Search Booking for Home Testing
+                                                    </h2>
+                                                </div>
+
+                                                <div class="d-flex content-l-11-3-card">
+                                                    <div class="content-body">
+                                                        <div class="main-price">
+                                                            <div class="price d-flex position-relative ">
+                                                                <h3>Home Testing Booking</h3>
+                                                            </div>
+                                                        </div>
+                                                        <br>
+                                                        <!--Feature Area -->
+                                                        <div class="feature-area-l-17 position-relative">
+                                                            <div class="row feature-area-l-17-items">
+                                                                <div
+                                                                    class="single-features single-border position-relative">
+                                                                    <h4>QR Code</h4>
+                                                                    <img th:src="${(targetBooking != null) ? targetBooking.getAdditionalInfo().getImgPath() : ''}"
+                                                                        id="display-image"
+                                                                        alt="No QR Code is uploaded.">
+                                                                    <!--                                                                        <div id="display-image"></div>-->
+                                                                    <div>
+                                                                        <p th:text="${message}"
+                                                                            th:if="${message ne null}"
+                                                                            class="alert alert-primary"></p>
+                                                                        <div th:if="${isSearch != false}">
+                                                                            <form method="POST"
+                                                                                th:action="@{/searchHomeTesting}"
+                                                                                enctype="multipart/form-data"
+                                                                                id="uploadForm">
+                                                                                <br>
+                                                                                <div class="form-group">
+                                                                                    <input type="file" id="image-input"
+                                                                                        accept="image/jpeg, image/png, image/jpg"
+                                                                                        name="file">
+                                                                                </div>
+
+                                                                            </form>
+                                                                        </div>
+                                                                        <br>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div th:if="${targetBooking != null}">
+                                                            <div class="single-features">
+                                                                <h4>Home Supervised Video Conferencing URL</h4>
+                                                                <p><a
+                                                                        th:href="${targetBooking.getAdditionalInfo().getUrl()}">Meeting
+                                                                        Link</a></p>
+                                                            </div>
+
+                                                            <br>
+
+
+                                                            <form
+                                                                th:action="@{/searchHomeTesting/} + ${targetBooking.getId() + '/' + targetBooking.getCovidTests()[0].getId()}"
+                                                                th:method="put">
+                                                                <div class="feature-area-l-17 position-relative">
+                                                                    <div class="row feature-area-l-17-items">
+                                                                        <ul class="pricing-list list-unstyled">
+                                                                            <li>
+                                                                                <h6>
+                                                                                    Booking ID:
+                                                                                    <span
+                                                                                        th:text="${targetBooking.getId()}">
+                                                                                    </span>
+                                                                                </h6>
+                                                                            </li>
+                                                                            <li>
+                                                                                <h6>Patient Name:
+                                                                                    <span
+                                                                                        th:text="${targetBooking.getCovidTests()[0].getPatient().getGivenName() + ' ' + targetBooking.getCovidTests()[0].getPatient().getFamilyName()}"></span>
+                                                                                </h6>
+                                                                            </li>
+                                                                            <li>
+                                                                                <h6>Customer Name:
+                                                                                    <span
+                                                                                        th:text="${targetBooking.getCustomer().getGivenName() + ' ' + targetBooking.getCustomer().getFamilyName()}"></span>
+                                                                                </h6>
+                                                                            </li>
+                                                                            <li>
+                                                                                <h6>Administerer Name:
+                                                                                    <span
+                                                                                        th:text="${targetBooking.getCovidTests()[0].getAdministerer() != null} ? (${targetBooking.getCovidTests()[0].getAdministerer().getGivenName() + ' ' + targetBooking.getCovidTests()[0].getAdministerer().getFamilyName()}) : '-'"></span>
+                                                                                </h6>
+                                                                            </li>
+                                                                            <li>
+                                                                                <h6>Start Datetime:
+                                                                                    <span
+                                                                                        th:text="${targetBooking.getStartTime()}"></span>
+                                                                                </h6>
+                                                                            </li>
+                                                                            <li>
+                                                                                <h6>Testing Site:<a
+                                                                                        th:href="@{'/testingSites/' + ${targetBooking.getTestingSite().getId()}}">
+                                                                                        <span
+                                                                                            th:text="${targetBooking.getTestingSite().getName()}"></span></a>
+                                                                                </h6>
+                                                                            </li>
+                                                                            <li>
+                                                                                <h6>Covid Test Type:
+                                                                                    <span
+                                                                                        th:text="${targetBooking.getCovidTests()[0].getType()}"></span>
+                                                                                </h6>
+                                                                            </li>
+                                                                            <li>
+                                                                                <h6>Booking Status:
+                                                                                    <span
+                                                                                        th:text="${targetBooking.getStatus()}"></span>
+                                                                                </h6>
+                                                                            </li>
+
+                                                                            <li>
+                                                                                <h6>Test Status:
+                                                                                    <span
+                                                                                        th:text="${targetBooking.getCovidTests()[0].getStatus()}"></span>
+                                                                                </h6>
+                                                                            </li>
+                                                                            <li>
+                                                                                <h6>Pick Up Test Kit?: <span
+                                                                                        th:text="${targetBooking.getCovidTests()[0].getAdditionalInfo().getIsTestKitPickedUp()} == '1' ? 'Yes' : 'No'"></span>
+                                                                                </h6>
+
+                                                                            </li>
+                                                                            <div
+                                                                                th:if="${session.logInUser} != null and ${session.logInUser.hasRole('receptionist')} and ${targetBooking.getCovidTests()[0].getAdditionalInfo().getIsTestKitPickedUp()} == '1'">
+                                                                                <li>
+                                                                                    <h6>Has Test Kit Been Collected?:
+                                                                                    </h6>
+                                                                                    <label class="switch">
+                                                                                        <input type="hidden"
+                                                                                            name="testKitStatus"
+                                                                                            value="0">
+
+                                                                                        <input type="checkbox"
+                                                                                            id="togBtn"
+                                                                                            th:checked="${targetBooking.getCovidTests()[0].getAdditionalInfo().getTestKitStatus()} == '1' ? 'checked'"
+                                                                                            name="testKitStatus"
+                                                                                            value="1">
+                                                                                        <div class="slider round">
+                                                                                            <!--ADDED HTML -->
+                                                                                            <span class="on">Yes</span>
+                                                                                            <span class="off">No</span>
+                                                                                            <!--END-->
+                                                                                        </div>
+                                                                                    </label>
+                                                                                </li>
+                                                                            </div>
+
+                                                                            <li
+                                                                                th:if="${session.logInUser} != null and ! ${session.logInUser.hasRole('receptionist') and targetBooking.isValid()}">
+                                                                                <h6>Has Test Kit Been Collected?: <span
+                                                                                        th:text="${targetBooking.getCovidTests()[0].getAdditionalInfo().getTestKitStatus()} == '1' ? 'Yes' : 'No'"></span>
+                                                                                </h6>
+
+                                                                            </li>
+
+                                                                            <li>
+                                                                                <h6>Notes: <span
+                                                                                        th:text="${targetBooking.getNotes()}"></span>
+                                                                                </h6>
+
+                                                                            </li>
+                                                                        </ul>
+                                                                        <div class="modal-footer"
+                                                                            th:if="${targetBooking.getCovidTests()[0].getAdditionalInfo().getIsTestKitPickedUp()} == '1' and ${session.logInUser.hasRole('receptionist') and targetBooking.isValid()}">
+                                                                            <button class="btn btn-secondary" type="submit"
+                                                                                value="Put">Save
+                                                                                Changes</button>
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-shape-l11-1 d-none d-md-block">
+                <img src="./image/l2/hero-shape-1.svg" alt="">
+            </div>
+            <div class="hero-shape-l11-2 d-none d-md-block">
+                <img src="./image/l2/hero-shape-2.png" alt="">
+            </div>
+        </div>
+
+        <!--footer-->
+        <div th:insert="fragments/footer :: footer"></div>
+    </div>
+    </section>
+
+    <!--Modal-->
+    <div th:insert="fragments/loginModal :: loginModal"></div>
+    <div th:insert="fragments/logoutModal :: logoutModal"></div>
+
+    <!-- Vendor Scripts -->
+    <script src="js/vendor.min.js"></script>
+    <!-- Plugin's Scripts -->
+    <script src="./plugins/aos/aos.min.js"></script>
+    <script src="./plugins/slick/slick.min.js"></script>
+    <script src="./plugins/menu/menu.js"></script>
+    <!-- Activation Script -->
+    <script src="js/custom.js"></script>
+    <script src="js/searchHomeTesting.js"></script>
+
+</body>
+
+</html>

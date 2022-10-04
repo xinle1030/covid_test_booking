@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<body data-theme-mode-panel-active data-theme="light" style="font-family: 'Mazzard H';">
+    <!-- <div class="site-wrapper overflow-hidden position-relative"> -->
+    <!-- Site Header -->
+    <!-- Preloader -->
+    <!-- <div id="loading">
+    <div class="preloader">
+     <img src="./image/preloader.gif" alt="preloader">
+   </div>
+   </div>    -->
+
+    <!-- Hero Area -->
+
+
+
+    <div class="row align-items-center justify-content-lg-between justify-content-center" th:fragment="homeTesting">
+        <div class="col-xxl-10 col-xl-11 col-lg-11 col-md-9 order-lg-1 order-1" data-aos="fade-right"
+            data-aos-duration="800" data-aos-once="true">
+            <br>
+            <div class="content section-heading-5">
+
+                <p th:if="${bookings.length == 0}">You have not made any booking for
+                    home testing yet.</p>
+
+                <!--Multiple Bookings-->
+                <div id="accordion">
+                    <th:block th:each="bookings, status: ${bookings}">
+                        <div class="card">
+                            <div class="card-header" th:id="'headingOne' + ${status.index}">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link" data-bs-toggle="collapse"
+                                        th:data-bs-target="'#collapseOne' + ${status.index}" aria-expanded="true"
+                                        th:aria-controls="'collapse' + ${status.index}">
+                                        Home Testing Booking -- <span th:text="${status.index + 1}"></span>
+                                    </button>
+                                </h5>
+                            </div>
+
+                            <div th:id="'collapseOne' + ${status.index}" class="collapse show"
+                                th:aria-labelledby="'headingOne' + ${status.index}">
+                                <div class="card-body">
+                                    <!--Feature Area -->
+                                    <div class="feature-area-l-17 position-relative">
+                                        <div class="row feature-area-l-17-items">
+                                            <div class="col-lg-6 col-md-9 col-sm-12">
+                                                <div class="single-features single-border position-relative">
+                                                    <h4>QR Code</h4>
+                                                    <p>
+                                                        <img class="lazy"
+                                                            th:data-src="${bookings.getAdditionalInfo().getImgPath()}"
+                                                            alt="">
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-9 col-sm-12">
+                                                <div class="single-features">
+                                                    <h4>Home Supervised Video
+                                                        Conferencing
+                                                        URL</h4>
+                                                    <p><a th:href="@{${bookings.getAdditionalInfo().getUrl()}}">Meeting
+                                                            Link</a></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <ul class="pricing-list list-unstyled">
+                                        <li>
+                                            <h6>
+                                                Booking ID:
+                                                <span th:text="${bookings.getId()}">
+                                                </span>
+                                            </h6>
+                                        </li>
+                                        <li>
+                                            <h6>Patient Name: <span
+                                                    th:text="${bookings.getCovidTests()[0].getPatient().getGivenName() + ' ' + bookings.getCovidTests()[0].getPatient().getFamilyName()}"></span>
+                                            </h6>
+                                        </li>
+                                        <li>
+                                            <h6>Administerer Name:
+                                                <span
+                                                    th:text="${bookings.getCovidTests()[0].getAdministerer() != null} ? (${bookings.getCovidTests()[0].getAdministerer().getGivenName() + ' ' + bookings.getCovidTests()[0].getAdministerer().getFamilyName()}) : '-'"></span>
+                                            </h6>
+                                        </li>
+                                        <li>
+                                            <h6>Start Datetime: <span th:text="${bookings.getStartTime()}"></span>
+                                            </h6>
+                                        </li>
+                                        <li>
+                                            <h6>Testing Site: <a
+                                                    th:href="@{'/testingSites/' + ${bookings.getTestingSite().getId()}}"><span
+                                                        th:text="${bookings.getTestingSite().getName()}"></span></a>
+                                            </h6>
+                                        </li>
+                                        <li>
+                                            <h6>Covid Test Type: <span
+                                                    th:text="${bookings.getCovidTests()[0].getType()}"></span>
+                                            </h6>
+                                        </li>
+                                        <li>
+                                            <h6>Status:
+                                                <span th:text="${bookings.getStatus()}"></span>
+                                            </h6>
+                                        </li>
+
+                                        <li>
+                                            <h6>Pick Up Test Kit?: <span
+                                                    th:text="*{bookings.getCovidTests()[0].getAdditionalInfo().getIsTestKitPickedUp().equals('0')}? 'No' : 'Yes'"></span>
+                                            </h6>
+                                        </li>
+                                        <li>
+                                            <h6>Has Test Kit Been Collected?: <span
+                                                    th:text="*{bookings.getCovidTests()[0].getAdditionalInfo().getTestKitStatus().equals('0')}? 'No' : 'Yes'"></span>
+                                            </h6>
+                                        </li>
+                                        <li>
+                                            <h6>Test Mode: <span
+                                                    th:text="${bookings.getCovidTests()[0].getAdditionalInfo().getTestMode()}"></span>
+                                            </h6>
+                                        </li>
+                                        <li>
+                                            <h6>Notes: <span th:text="${bookings.getNotes()}"></span>
+                                            </h6>
+                                        </li>
+                                    </ul>
+                                    <p style="font-size: small">booked on: <span
+                                            th:text="${bookings.getCreatedAt()}"></span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </th:block>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

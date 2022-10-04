@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+    <!-- Booking Form Modal -->
+    <div th:fragment="interviewModal" class="modal fade" id="interviewModal" tabindex="-1"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Interview Form</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="#" th:action="@{'/searchOnSiteTestingBySms/' + ${smsCode}}" method="post">
+
+                        <p>1. Do you have any of the following symptoms?</p>
+                        <small><em>**Please leave this field blank if you do not have any symptom</em></small>
+                        <div class="form-group">
+                            
+                            <input type="checkbox" id="symptom1" th:name="symptoms" value="symptom1">
+                            <label for="symptom1"> Fever or chills</label><br>
+
+                            <input type="checkbox" id="symptom2" th:name="symptoms" value="symptom2">
+                            <label for="symptom2"> Cough</label><br>
+
+                            <input type="checkbox" id="symptom3" th:name="symptoms" value="symptom3">
+                            <label for="symptom3"> Shortness of breath or difficulty breathing</label><br>
+
+                            <input type="checkbox" id="symptom4" th:name="symptoms" value="symptom4">
+                            <label for="symptom4"> Fatigue</label><br>
+
+                            <input type="checkbox" id="symptom5" th:name="symptoms" value="symptom5">
+                            <label for="symptom5"> Muscle or body aches</label><br>
+
+                            <input type="checkbox" id="symptom6" th:name="symptoms" value="symptom6">
+                            <label for="symptom6"> Headache</label><br>
+
+                            <input type="checkbox" id="symptom7" th:name="symptoms" value="symptom7">
+                            <label for="symptom7"> New loss of taste or smell</label><br>
+
+                            <input type="checkbox" id="symptom8" th:name="symptoms" value="symptom8">
+                            <label for="symptom8"> Sore throat</label><br>
+
+                            <input type="checkbox" id="symptom9" th:name="symptoms" value="symptom9">
+                            <label for="symptom9"> Congestion or runny nose</label><br>
+
+                            <input type="checkbox" id="symptom10" th:name="symptoms" value="symptom10">
+                            <label for="symptom10"> Nausea or vomiting</label><br>
+
+                            <input type="checkbox" id="symptom11" th:name="symptoms" value="symptom11">
+                            <label for="symptom11"> Diarrhea</label><br>
+                        </div>
+
+                        <br>
+
+                        <p>2. Have you been in close contact with someone with the disease?</p>
+                        <div class="form-group">
+                            <input type="radio" id="yesCloseContact" th:name="closeContact" value="yes" required>
+                            <label for="yesCloseContact">Yes</label><br>
+                            <input type="radio" id="noCloseContact" th:name="closeContact" value="no">
+                            <label for="noCloseContact">No</label><br>
+                        </div>
+
+                        <br>
+
+                        <p>3. When did the close contact occur?</p>
+                        <div class="form-group">
+                            <select class="form-select" id="closeContactPeriod" th:name="closeContactPeriod" required>
+                                <option value="-1" selected>-</option>
+                                <option value="1">Within 14 days</option>
+                                <option value="0">More than 14 days</option>
+                            </select>
+                        </div>
+
+                        <br>
+
+                        <p>4. When did the symptoms start appearing?</p>
+                        <div class="form-group">
+                            <select class="form-select" id="symptomsPeriod" th:name="symptomsPeriod" required>
+                                <option value="-1" selected>-</option>
+                                <option value="1">Within 5 days</option>
+                                <option value="0">More than 5 days</option>
+                            </select>
+                        </div>
+
+                        <br>
+
+                        <p>5. Do you suffer from:</p>
+                        <small><em>**Please leave this field blank if you do not suffer from anything</em></small>
+                        <div class="form-group">
+                      
+                            <input type="checkbox" id="suffer1" th:name="suffer1" value="suffer1">
+                            <label for="suffer1"> Trouble breathing</label><br>
+
+                            <input type="checkbox" id="suffer2" th:name="suffers" value="suffer2">
+                            <label for="suffer2"> Persistent pain or pressure in your chest</label><br>
+
+                            <input type="checkbox" id="suffer3" th:name="suffers" value="suffer3">
+                            <label for="suffer3"> New confusion</label><br>
+
+                            <input type="checkbox" id="suffer4" th:name="suffers" value="suffer4">
+                            <label for="suffer4"> Aren’t able to wake or stay awake</label><br>
+
+                            <input type="checkbox" id="suffer5" th:name="suffers" value="suffer5">
+                            <label for="suffer5"> Blue lips or face</label><br>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

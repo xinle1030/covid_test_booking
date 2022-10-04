@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<body data-theme-mode-panel-active data-theme="light" style="font-family: 'Mazzard H';">
+    <!-- <div class="site-wrapper overflow-hidden position-relative"> -->
+    <!-- Site Header -->
+    <!-- Preloader -->
+    <!-- <div id="loading">
+    <div class="preloader">
+     <img src="./image/preloader.gif" alt="preloader">
+   </div>
+   </div>    -->
+
+    <!-- Hero Area -->
+    <div class="row align-items-center justify-content-lg-between justify-content-center" th:fragment="onSiteTesting">
+        <div class="col-xxl-10 col-xl-11 col-lg-11 col-md-9 order-lg-1 order-1" data-aos="fade-right"
+            data-aos-duration="800" data-aos-once="true">
+            <br>
+            <div class="content section-heading-5">
+
+                <p th:text="${message}" th:if="${message ne null}" class="alert alert-primary"></p>
+                <p th:if="${bookings == null || bookings.length == 0}">You have not made any booking for
+                    on-site testing yet.</p>
+
+                <!--Multiple Bookings-->
+                <div id="accordion" th:if="${bookings != null}">
+
+                    <th:block th:each="bookings, status: ${bookings}">
+                        <div class="card">
+                            <div class="card-header" th:id="'headingOne' + ${status.index}">
+
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link" data-bs-toggle="collapse"
+                                        th:data-bs-target="'#collapseOne' + ${status.index}" aria-expanded="true"
+                                        th:aria-controls="'collapse' + ${status.index}">
+                                        On-site Booking -- <span th:text="${status.index + 1}"></span>
+                                    </button>
+                                </h5>
+
+                            </div>
+
+                            <div th:id="'collapseOne' + ${status.index}" class="collapse show"
+                                th:aria-labelledby="'headingOne' + ${status.index}">
+                                <div class="card-body">
+                                    <ul class="pricing-list list-unstyled">
+                                        <li>
+                                            <h6>
+                                                Booking ID:
+                                                <span th:text="${bookings.getId()}">
+                                                </span>
+                                            </h6>
+                                        </li>
+                                        <li>
+                                            <h6>Patient Name: <span
+                                                    th:text="${bookings.getCovidTests()[0].getPatient().getGivenName() + ' ' + bookings.getCovidTests()[0].getPatient().getFamilyName()}"></span>
+                                            </h6>
+                                        </li>
+                                        <li>
+                                            <h6>Administerer Name:
+                                                <span
+                                                    th:text="${bookings.getCovidTests()[0].getAdministerer() != null} ? (${bookings.getCovidTests()[0].getAdministerer().getGivenName() + ' ' + bookings.getCovidTests()[0].getAdministerer().getFamilyName()}) : '-'"></span>
+                                            </h6>
+                                        </li>
+                                        <li>
+                                            <h6>Start Datetime: <span th:text="${bookings.getStartTime()}"></span>
+                                            </h6>
+                                        </li>
+                                        <li>
+                                            <h6>Testing Site: <a
+                                                    th:href="@{'/testingSites/' + ${bookings.getTestingSite().getId()}}"><span
+                                                        th:text="${bookings.getTestingSite().getName()}"></span></a>
+                                            </h6>
+                                        </li>
+                                        <li>
+                                            <h6>Covid Test Type: <span
+                                                    th:text="${bookings.getCovidTests()[0].getType()}"></span>
+                                            </h6>
+                                        </li>
+                                        <li>
+                                            <h6>Status:
+                                                <span th:text="${bookings.getStatus()}"></span>
+                                            </h6>
+                                        </li>
+                                        <li>
+                                            <h6>Test Mode: <span
+                                                    th:text="${bookings.getCovidTests()[0].getAdditionalInfo().getTestMode()}"></span>
+                                            </h6>
+                                        </li>
+                                        <li>
+                                            <h6>SMSPin: <span th:text="${bookings.getSmsPin()}"></span>
+                                            </h6>
+                                        </li>
+                                        <li>
+                                            <h6>Notes: <span th:text="${bookings.getNotes()}"></span>
+                                            </h6>
+                                        </li>
+                                    </ul>
+                                    <p style="font-size: small">Booked on: <span
+                                            th:text="${bookings.getCreatedAt()}"></span>
+                                    </p>
+                                    <p style="font-size: small">Last updated on: <span
+                                            th:text="${bookings.getUpdatedAt()}"></span>
+                                    </p>
+                                    <div class="modal-footer">
+                                        <a class="btn btn-secondary" data-bs-toggle="modal"
+                                            th:attr="data-bs-target=${'#cancelBookingModal' + bookings.getId()}" th:if="${bookings.isValid()}">Cancel
+                                            Booking</a>
+                                        <a class="btn btn-secondary"
+                                            th:href="@{'/booking/' + ${bookings.getId()} + '/edit'}" th:if="${bookings.isValid()}">Edit</a>
+                                        <a class="btn btn-secondary"
+                                            th:href="@{'/booking/' + ${bookings.getId()} + '/revert'}"
+                                            th:if="${bookings.getAdditionalInfo().getBookingVersions().size() >= 1 and bookings.isValid()}">Revert
+                                            changes</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </th:block>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
